@@ -4,7 +4,7 @@
  * and wraps each line individually with the specified opening and closing strings.</p>
 
  * @author Johannes Nupen Theigen
- * @version 0.0.1
+ * @version 0.0.2
  * @since 01.29.2025
  */
 public class WrapLinesTextCommand extends WrapTextCommand {
@@ -26,6 +26,7 @@ public class WrapLinesTextCommand extends WrapTextCommand {
    * @param text The text to apply the command to.
    * @return The text with each line wrapped with the opening and end strings.
    */
+  @Override
   public String execute(String text) {
     return getOpening() + text.replace("\n", getEnd() + " " + getOpening()) + getEnd();
   }
