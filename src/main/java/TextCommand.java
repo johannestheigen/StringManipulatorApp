@@ -7,11 +7,9 @@
  */
 public interface TextCommand {
   /**
-   * <p>
-   *   Executes a command that can be applied to a text.
-   * </p>
+   * <p>Executes a command that can be applied to a text.</p>
 
    * @param text The text to apply the command to.
    */
-  void execute(String text);
+  String execute(String text);
 }
