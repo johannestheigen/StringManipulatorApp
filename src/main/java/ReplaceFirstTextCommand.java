@@ -27,6 +27,7 @@ public class ReplaceFirstTextCommand extends ReplaceTextCommand {
    * @param text The text to apply the command to.
    * @return The text with the first occurrence of the target
    */
+  @Override
   public String execute(String text) {
     return text.replaceFirst(getTarget(), getReplacement());
   }
