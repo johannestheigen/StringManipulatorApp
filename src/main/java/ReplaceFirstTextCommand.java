@@ -4,7 +4,7 @@
  *   replacement string.</p>
 
  * @author Johannes Nupen Theigen
- * @version 0.0.1
+ * @version 0.0.2
  * @since 01.29.2025
  */
 public class ReplaceFirstTextCommand extends ReplaceTextCommand {
@@ -29,11 +29,5 @@ public class ReplaceFirstTextCommand extends ReplaceTextCommand {
    */
   public String execute(String text) {
     return text.replaceFirst(getTarget(), getReplacement());
-  }
-
-  public static void main(String[] args) {
-    ReplaceFirstTextCommand command = new ReplaceFirstTextCommand("old text", "new text");
-    String result = command.execute("This is the old text with the old text.");
-    System.out.println(result);
   }
 }
