@@ -11,8 +11,10 @@ strings in different ways. The program is written in Java
 and developed in IntelliJ IDEA IDE. 
 
 ## Project Structure
-The project is currently in early development and the
-structure is not yet decided
+The currently is still in development and there are still
+some classes that needs to be implemented, including
+a functional user interface. Don't worry though, the project
+shall be completed soon.
 
 ## How to run the project
 Once the project is finished, the user can run the program
