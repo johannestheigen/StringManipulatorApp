@@ -4,7 +4,7 @@
  * </p>
 
  * @author Johannes Nupen Theigen
- * @version 0.0.2
+ * @version 0.0.3
  * @since 01.30.2025
  */
 public class WrapSelectionTextCommand extends WrapTextCommand {
@@ -30,6 +30,6 @@ public class WrapSelectionTextCommand extends WrapTextCommand {
     if (!text.contains(selection)) {
       throw new IllegalArgumentException("The selection was not found in the text.");
     }
-    return text.replace(selection, super.execute(selection));
+    return text.replace(selection, getOpening() + selection + getEnd());
   }
 }
