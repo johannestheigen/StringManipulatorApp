@@ -3,8 +3,8 @@
  * This command wraps a text with an opening and end string.</p>
 
  * @author Johannes Nupen Theigen
- * @version 0.0.1
- * @since 01.29.2025
+ * @version 0.0.2
+ * @since 01.30.2025
  */
 public class WrapTextCommand implements TextCommand {
 
@@ -31,6 +31,9 @@ public class WrapTextCommand implements TextCommand {
    * @return The text wrapped with the opening and end strings.
    */
   public String execute(String text) {
+    if (text == null || text.isEmpty()) {
+      throw new IllegalArgumentException("Text cannot be null or empty.");
+    }
     return getOpening() + text + getEnd();
   }
 
