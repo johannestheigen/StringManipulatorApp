@@ -11,25 +11,27 @@ import static org.junit.jupiter.api.Assertions.*;
 class CapitalizeTextCommandTest {
 
   /**
-   * <p>Positive test that assures that a text is properly capitalized</p>
+   * <p>Positive test that assures that a the first letter of
+   * a text is properly capitalized</p>
    */
   @Test
   void executePositiveTest() {
   CapitalizeTextCommand capitalizeTextCommand = new CapitalizeTextCommand();
   String textToBeCapitalized = "hello world";
-  String expected = "HELLO WORLD";
+  String expected = "Hello world";
   String actual = capitalizeTextCommand.execute(textToBeCapitalized);
   assertEquals(expected, actual, "The text did not match the expected output.");
   }
 
   /**
-   * <p>Negative test that assures that a text is not incorrectly capitalized</p>
+   * <p>Negative test that assures that the first letter of
+   * a text is not incorrectly capitalized</p>
    */
   @Test
   void executeNegativeTest() {
     CapitalizeTextCommand capitalizeTextCommand = new CapitalizeTextCommand();
     String textToBeCapitalized = "hello world";
-    String expected = "HeLLO WORLD";
+    String expected = "hEllo world";
     String actual = capitalizeTextCommand.execute(textToBeCapitalized);
     assertNotEquals(expected, actual, "The execution output matches the expected result, failing the negative test.");
   }
