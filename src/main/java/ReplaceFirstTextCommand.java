@@ -4,8 +4,8 @@
  *   replacement string.</p>
 
  * @author Johannes Nupen Theigen
- * @version 0.0.2
- * @since 01.29.2025
+ * @version 0.0.3
+ * @since 01.30.2025
  */
 public class ReplaceFirstTextCommand extends ReplaceTextCommand {
 
@@ -29,6 +29,9 @@ public class ReplaceFirstTextCommand extends ReplaceTextCommand {
    */
   @Override
   public String execute(String text) {
+    if (!text.contains(getTarget())) {
+      throw new IllegalArgumentException("The target was not found in the text.");
+    }
     return text.replaceFirst(getTarget(), getReplacement());
   }
 }
