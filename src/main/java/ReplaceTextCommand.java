@@ -3,7 +3,7 @@
  * This command replaces a target string with a replacement string.</p>
  *
  * @author Johannes Nupen Theigen
- * @version 0.0.2
+ * @version 0.0.3
  * @since 01.30.2025
  */
 public class ReplaceTextCommand implements TextCommand {
@@ -30,7 +30,7 @@ public class ReplaceTextCommand implements TextCommand {
    */
   public String execute(String text) {
     if (!text.contains(getTarget())) {
-      throw new IllegalArgumentException("The target is not found in the text.");
+      throw new IllegalArgumentException("The target was not found in the text.");
     }
     return text.replace(getTarget(), getReplacement());
   }
