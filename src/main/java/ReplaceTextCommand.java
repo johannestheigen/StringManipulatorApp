@@ -3,8 +3,8 @@
  * This command replaces a target string with a replacement string.</p>
  *
  * @author Johannes Nupen Theigen
- * @version 0.0.1
- * @since 01.29.2025
+ * @version 0.0.2
+ * @since 01.30.2025
  */
 public class ReplaceTextCommand implements TextCommand {
   private final String target;
@@ -29,6 +29,9 @@ public class ReplaceTextCommand implements TextCommand {
    * @return The text with the target string replaced by the replacement string.
    */
   public String execute(String text) {
+    if (!text.contains(getTarget())) {
+      throw new IllegalArgumentException("The target is not found in the text.");
+    }
     return text.replace(getTarget(), getReplacement());
   }
 
