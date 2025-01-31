@@ -5,31 +5,38 @@
 
  * @author Johannes Nupen Theigen
  * @version 0.0.3
- * @since 01.30.2025
+ * @since 01.31.2025
  */
 public class WrapSelectionTextCommand extends WrapTextCommand {
+
+  private final String selection;
 
   /**
    * <p>Creates a new WrapSelectionTextCommand with the given opening and end strings.</p>
    *
    * @param opening The opening string.
    * @param end The end string.
+   * @param selection The selection to wrap.
    */
-  public WrapSelectionTextCommand(String opening, String end) {
+  public WrapSelectionTextCommand(String opening, String end, String selection) {
     super(opening, end);
+    this.selection = selection;
   }
 
   /**
    * <p>This command wraps a selection of text with an opening and end string.</p>
 
    * @param text The text to apply the command to.
-   * @param selection The part of the text to wrap
    * @return The text with the selection wrapped with the opening and end strings.
    */
-  public String execute(String text, String selection) {
-    if (!text.contains(selection)) {
-      throw new IllegalArgumentException("The selection was not found in the text.");
+  @Override
+  public String execute(String text) {
+    if (text == null || text.isEmpty()) {
+      throw new IllegalArgumentException("Text cannot be null or empty.");
     }
-    return text.replace(selection, getOpening() + selection + getEnd());
+    if (!text.contains(selection)) {
+      return text;
+    }
+    return text.replaceFirst(selection, getOpening() + selection + getEnd());
   }
 }

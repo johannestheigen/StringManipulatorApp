@@ -16,24 +16,21 @@ class WrapSelectionTextCommandTest {
    */
   @Test
   void executePositiveTest() {
-    WrapSelectionTextCommand wrapSelectionTextCommand = new WrapSelectionTextCommand("<p>", "</p>");
+    WrapSelectionTextCommand wrapSelectionTextCommand = new WrapSelectionTextCommand("<p>", "</p>", "Hello");
     String text = "Hello World!";
-    String selection = "World";
-    String result = wrapSelectionTextCommand.execute(text, selection);
-    String expected = "Hello <p>World</p>!";
-    assertEquals(expected, result, "The wrapped text did not match the expected output.");
+    String result = wrapSelectionTextCommand.execute(text);
+    assertEquals("<p>Hello</p> World!", result, "The execution output does not match the expected result, failing the positive test.");
   }
 
-  /**
+  /*
    * <p>Negative test that assures that a selection of text is not incorrectly
    * wrapped with the opening and end strings.</p>
    */
   @Test
   void executeNegativeTest() {
-    WrapSelectionTextCommand wrapSelectionTextCommand = new WrapSelectionTextCommand("<p>", "</p>");
+    WrapSelectionTextCommand wrapSelectionTextCommand = new WrapSelectionTextCommand("<p>", "</p>", "World");
     String text = "Hello World!";
-    String selection = "World";
-    String result = wrapSelectionTextCommand.execute(text, selection);
+    String result = wrapSelectionTextCommand.execute(text);
     String expected = "Hello W<p>orld</p>!";
     assertNotEquals(expected, result, "The execution output matches the expected result, failing the negative test.");
   }
