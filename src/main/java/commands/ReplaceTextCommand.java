@@ -1,3 +1,5 @@
+package commands;
+
 /**
  * <p>Represents a command that can be applied to a text.
  * This command replaces a target string with a replacement string.</p>
@@ -11,7 +13,7 @@ public class ReplaceTextCommand implements TextCommand {
   private final String replacement;
 
   /**
-   * <p>Creates a new ReplaceTextCommand with the given target and replacement strings.</p>
+   * <p>Creates a new commands.ReplaceTextCommand with the given target and replacement strings.</p>
 
    * @param target the string to replace
    * @param replacement the string that replaces the target

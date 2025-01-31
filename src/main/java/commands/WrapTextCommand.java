@@ -1,3 +1,5 @@
+package commands;
+
 /**
  * <p>Represents a command that can be applied to a text.
  * This command wraps a text with an opening and end string.</p>
@@ -12,7 +14,7 @@ public class WrapTextCommand implements TextCommand {
   private final String end;
 
   /**
-   * <p>Creates a new WrapTextCommand with the given opening and end strings.</p>
+   * <p>Creates a new commands.WrapTextCommand with the given opening and end strings.</p>
 
    * @param opening The opening string.
    * @param end The end string.

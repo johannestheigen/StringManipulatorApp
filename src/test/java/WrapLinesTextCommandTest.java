@@ -1,9 +1,10 @@
+import commands.WrapLinesTextCommand;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * <p>Test class for the WrapLinesTextCommand class to ensure that
+ * <p>Test class for the commands.WrapLinesTextCommand class to ensure that
  * the execute work as expected.
  * It provides both positive and negative tests that follows the AAA
  * (Arrange, Act, Assert) pattern.</p>

@@ -1,9 +1,10 @@
+import commands.CapitalizeWordsTextCommand;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * <p>Test class for the CapitalizeWordsTextCommand to ensure
+ * <p>Test class for the commands.CapitalizeWordsTextCommand to ensure
  * that its method execute works as expected. It provides both
  * positive and negative tests that follows the AAA (Arrange,
  * Act, Assert) pattern.</p>

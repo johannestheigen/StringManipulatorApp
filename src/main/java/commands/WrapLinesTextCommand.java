@@ -1,3 +1,5 @@
+package commands;
+
 /**
  * <p>Represents a command that can be applied to a text.
  * This command splits the text by line breaks (e.g., "\n")
@@ -10,7 +12,7 @@
 public class WrapLinesTextCommand extends WrapTextCommand {
 
   /**
-   * <p>Creates a new WrapLinesTextCommand with the given opening and end strings.</p>
+   * <p>Creates a new commands.WrapLinesTextCommand with the given opening and end strings.</p>
 
    * @param opening The opening string.
    * @param end The end string.

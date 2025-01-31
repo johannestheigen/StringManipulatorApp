@@ -1,3 +1,5 @@
+package commands;
+
 /**
  * <p>Represents a command that can be applied to a text.
  * This command capitalizes a selection of text.</p>
@@ -11,7 +13,7 @@ public class CapitalizeSelectionCommand extends CapitalizeTextCommand {
   private final String selection;
 
   /**
-   * <p>Creates a new instance of the CapitalizeSelectionCommand.</p>
+   * <p>Creates a new instance of the commands.CapitalizeSelectionCommand.</p>
 
    * @param selection The selection to capitalize.
    */

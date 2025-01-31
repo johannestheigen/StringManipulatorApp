@@ -1,3 +1,5 @@
+package commands;
+
 /**
  * <p>Represents a command that can be applied to a text.</p>
  *

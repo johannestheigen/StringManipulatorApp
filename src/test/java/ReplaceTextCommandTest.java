@@ -1,8 +1,10 @@
 import static org.junit.jupiter.api.Assertions.*;
+
+import commands.ReplaceTextCommand;
 import org.junit.jupiter.api.*;
 
 /**
- * <p>Test class for the ReplaceTextCommand class to ensure that
+ * <p>Test class for the commands.ReplaceTextCommand class to ensure that
  * its methods execute, getTarget and getReplacement work as expected.
  * It provides both positive and negative tests that follows the AAA
  * (Arrange, Act, Assert) pattern.</p>

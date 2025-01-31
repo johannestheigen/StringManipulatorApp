@@ -1,3 +1,5 @@
+package commands;
+
 /**
  * <p>Represents a command that can be applied to a text
  * which capitalizes the first letter of a text.</p>

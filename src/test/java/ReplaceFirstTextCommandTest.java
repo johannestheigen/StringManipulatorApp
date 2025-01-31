@@ -1,10 +1,12 @@
+import commands.ReplaceFirstTextCommand;
+import commands.ReplaceTextCommand;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
- * <p>Test class for the  ReplaceFirstTextCommand class to ensure
+ * <p>Test class for the  commands.ReplaceFirstTextCommand class to ensure
  * that its method execute works as expected. It provides both
  * positive and negative tests that follows the AAA (Arrange,
  * Act, Assert) pattern.</p>

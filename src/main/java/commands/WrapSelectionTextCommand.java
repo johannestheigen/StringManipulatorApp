@@ -1,3 +1,5 @@
+package commands;
+
 /**
  * <p>Represents a command that can be applied to a text.
  * This command wraps a selection of text with an opening and end string.</p>
@@ -12,7 +14,7 @@ public class WrapSelectionTextCommand extends WrapTextCommand {
   private final String selection;
 
   /**
-   * <p>Creates a new WrapSelectionTextCommand with the given opening and end strings.</p>
+   * <p>Creates a new commands.WrapSelectionTextCommand with the given opening and end strings.</p>
    *
    * @param opening The opening string.
    * @param end The end string.

@@ -1,9 +1,12 @@
+import commands.CapitalizeTextCommand;
+import commands.ReplaceTextCommand;
+import commands.Script;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * <p>Test class for the Script to ensure that its method execute
+ * <p>Test class for the commands.Script to ensure that its method execute
  * works as expected. It provides both positive and negative tests
  * that follows the AAA (Arrange, Act, Assert) pattern.</p>
  */

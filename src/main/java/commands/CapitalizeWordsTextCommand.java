@@ -1,3 +1,5 @@
+package commands;
+
 /**
  * <p>
  *   Represents a command that can be applied to a text
@@ -11,7 +13,7 @@
 public class CapitalizeWordsTextCommand extends CapitalizeTextCommand {
 
   /**
-   * <p>Creates a new instance of the CapitalizeWordsTextCommand.</p>
+   * <p>Creates a new instance of the commands.CapitalizeWordsTextCommand.</p>
    */
   public CapitalizeWordsTextCommand() {
     super();
