@@ -11,13 +11,17 @@ strings in different ways. The program is written in Java
 and developed in IntelliJ IDEA IDE. 
 
 ## Project Structure
-The currently is still in development and there are still
-some classes that needs to be implemented, including
-a functional user interface. Don't worry though, the project
-shall be completed soon.
+The unit tests are located in the test folder, in  packages matching the unit classes.
+The source code is packaged in the main folder.
+
+There are five packages in the main folder:
+
+- **`app`**: Contains the `UserInterface` class and the `Main` class.
+- **`commands`**: Contains all the different command classes.
+- **`util`**: Contains utility classes for input reading and printing.
 
 ## How to run the project
-Once the project is finished, the user can run the program
+The user can run the program
 in the command prompt by navigating to the project folder and
 running the following commands:`javac filename.java` to compile the project.
 and the command `java filename` to run the project.
