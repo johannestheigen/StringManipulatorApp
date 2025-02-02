@@ -8,18 +8,17 @@ import commands.ReplaceTextCommand;
 import commands.WrapLinesTextCommand;
 import commands.WrapSelectionTextCommand;
 import commands.WrapTextCommand;
-
 import util.InputReader;
 import util.Printer;
 
 /**
  * <p>
- *   Represents the user interface of the String Manipulator Application.
+ * Represents the user interface of the String Manipulator Application.
  * </p>
-
+ *
  * @author Johannes Nupen Theigen
- * @version 0.0.2
- * @since 02.01.2025
+ * @version 0.0.3
+ * @since 02.02.2025
  */
 public class UserInterface {
 
@@ -50,15 +49,19 @@ public class UserInterface {
    * is printed to the console.</p>
    */
   public void wrapTextCommand() {
-    isTextEmpty();
-    printer.promptForOpeningTag();
-    String opening = inputReader.readLine();
-    printer.promptForClosingTag();
-    String closing = inputReader.readLine();
-    WrapTextCommand wrapTextCommand = new WrapTextCommand(opening, closing);
-    String result = wrapTextCommand.execute(textToBeModified);
-    textToBeModified = result;
-    System.out.println(result);
+    try {
+      isTextEmpty();
+      printer.promptForOpeningTag();
+      String opening = inputReader.readLine();
+      printer.promptForClosingTag();
+      String closing = inputReader.readLine();
+      WrapTextCommand wrapTextCommand = new WrapTextCommand(opening, closing);
+      String result = wrapTextCommand.execute(textToBeModified);
+      textToBeModified = result;
+      System.out.println(result);
+    } catch (Exception e) {
+      printer.printInvalidInput();
+    }
   }
 
   /**
@@ -70,18 +73,22 @@ public class UserInterface {
    * is printed to the console.</p>
    */
   public void wrapSelectionTextCommand() {
-    isTextEmpty();
-    printer.promptForOpeningTag();
-    String opening = inputReader.readLine();
-    printer.promptForClosingTag();
-    String closing = inputReader.readLine();
-    printer.promptForTextToWrap();
-    String selection = inputReader.readLine();
-    WrapSelectionTextCommand wrapSelectionTextCommand =
-        new WrapSelectionTextCommand(opening, closing, selection);
-    String result = wrapSelectionTextCommand.execute(textToBeModified);
-    textToBeModified = result;
-    System.out.println(result);
+    try {
+      isTextEmpty();
+      printer.promptForOpeningTag();
+      String opening = inputReader.readLine();
+      printer.promptForClosingTag();
+      String closing = inputReader.readLine();
+      printer.promptForTextToWrap();
+      String selection = inputReader.readLine();
+      WrapSelectionTextCommand wrapSelectionTextCommand =
+          new WrapSelectionTextCommand(opening, closing, selection);
+      String result = wrapSelectionTextCommand.execute(textToBeModified);
+      textToBeModified = result;
+      System.out.println(result);
+    } catch (Exception e) {
+      printer.printInvalidInput();
+    }
   }
 
   /**
@@ -93,21 +100,25 @@ public class UserInterface {
    * is printed to the console.</p>
    */
   public void wrapLinesCommand() {
-    isTextEmpty();
-    printer.promptForOpeningTag();
-    final String opening = inputReader.readLine();
-    printer.promptForClosingTag();
-    String closing = inputReader.readLine();
-    printer.promptForTextsToWrap();
-    StringBuilder textBuilder = new StringBuilder();
-    String line;
-    while (!(line = inputReader.readLine()).isEmpty()) {
-      textBuilder.append(line).append(System.lineSeparator());
+    try {
+      isTextEmpty();
+      printer.promptForOpeningTag();
+      final String opening = inputReader.readLine();
+      printer.promptForClosingTag();
+      String closing = inputReader.readLine();
+      printer.promptForTextsToWrap();
+      StringBuilder textBuilder = new StringBuilder();
+      String line;
+      while (!(line = inputReader.readLine()).isEmpty()) {
+        textBuilder.append(line).append(System.lineSeparator());
+      }
+      WrapLinesTextCommand wrapLinesTextCommand = new WrapLinesTextCommand(opening, closing);
+      String result = wrapLinesTextCommand.execute(textToBeModified);
+      textToBeModified = result;
+      System.out.println(result);
+    } catch (Exception e) {
+      printer.printInvalidInput();
     }
-    WrapLinesTextCommand wrapLinesTextCommand = new WrapLinesTextCommand(opening, closing);
-    String result = wrapLinesTextCommand.execute(textToBeModified);
-    textToBeModified = result;
-    System.out.println(result);
   }
 
   /**
@@ -119,16 +130,20 @@ public class UserInterface {
    * is printed to the console.</p>
    */
   public void replaceTextCommand() {
-    isTextEmpty();
-    printer.promptForTextToReplace();
-    String textToReplace = inputReader.readLine();
-    printer.promptForTextToReplaceWith();
-    String textToReplaceWith = inputReader.readLine();
-    ReplaceTextCommand replaceTextCommand =
-        new ReplaceTextCommand(textToReplace, textToReplaceWith);
-    String result = replaceTextCommand.execute(textToBeModified);
-    textToBeModified = result;
-    System.out.println(result);
+    try {
+      isTextEmpty();
+      printer.promptForTextToReplace();
+      String textToReplace = inputReader.readLine();
+      printer.promptForTextToReplaceWith();
+      String textToReplaceWith = inputReader.readLine();
+      ReplaceTextCommand replaceTextCommand =
+          new ReplaceTextCommand(textToReplace, textToReplaceWith);
+      String result = replaceTextCommand.execute(textToBeModified);
+      textToBeModified = result;
+      System.out.println(result);
+    } catch (Exception e) {
+      printer.printInvalidInput();
+    }
   }
 
   /**
@@ -140,16 +155,20 @@ public class UserInterface {
    * is printed to the console.</p>
    */
   public void replaceFirstTextCommand() {
-    isTextEmpty();
-    printer.promptForTextToReplace();
-    String textToReplace = inputReader.readLine();
-    printer.promptForTextToReplaceWith();
-    String textToReplaceWith = inputReader.readLine();
-    ReplaceFirstTextCommand replaceFirstTextCommand =
-        new ReplaceFirstTextCommand(textToReplace, textToReplaceWith);
-    String result = replaceFirstTextCommand.execute(textToBeModified);
-    textToBeModified = result;
-    System.out.println(result);
+    try {
+      isTextEmpty();
+      printer.promptForTextToReplace();
+      String textToReplace = inputReader.readLine();
+      printer.promptForTextToReplaceWith();
+      String textToReplaceWith = inputReader.readLine();
+      ReplaceFirstTextCommand replaceFirstTextCommand =
+          new ReplaceFirstTextCommand(textToReplace, textToReplaceWith);
+      String result = replaceFirstTextCommand.execute(textToBeModified);
+      textToBeModified = result;
+      System.out.println(result);
+    } catch (Exception e) {
+      printer.printInvalidInput();
+    }
   }
 
   /**
@@ -158,11 +177,15 @@ public class UserInterface {
    * The text is capitalized and the result is printed to the console.</p>
    */
   public void capitalizeTextCommand() {
-    isTextEmpty();
-    CapitalizeTextCommand capitalizeTextCommand = new CapitalizeTextCommand();
-    String result = capitalizeTextCommand.execute(textToBeModified);
-    textToBeModified = result;
-    System.out.println(result);
+    try {
+      isTextEmpty();
+      CapitalizeTextCommand capitalizeTextCommand = new CapitalizeTextCommand();
+      String result = capitalizeTextCommand.execute(textToBeModified);
+      textToBeModified = result;
+      System.out.println(result);
+    } catch (Exception e) {
+      printer.printInvalidInput();
+    }
   }
 
   /**
@@ -171,11 +194,15 @@ public class UserInterface {
    * The words in the text are capitalized and the result is printed to the console.</p>
    */
   public void capitalizeWordsTextCommand() {
-    isTextEmpty();
-    CapitalizeWordsTextCommand capitalizeWordsTextCommand = new CapitalizeWordsTextCommand();
-    String result = capitalizeWordsTextCommand.execute(textToBeModified);
-    textToBeModified = result;
-    System.out.println(result);
+    try {
+      isTextEmpty();
+      CapitalizeWordsTextCommand capitalizeWordsTextCommand = new CapitalizeWordsTextCommand();
+      String result = capitalizeWordsTextCommand.execute(textToBeModified);
+      textToBeModified = result;
+      System.out.println(result);
+    } catch (Exception e) {
+      printer.printInvalidInput();
+    }
   }
 
   /**
@@ -185,14 +212,18 @@ public class UserInterface {
    * The selected part of the text is capitalized and the result is printed to the console.</p>
    */
   public void capitalizeSelectionCommand() {
-    isTextEmpty();
-    printer.promptForPartOfTextToCapitalize();
-    String selection = inputReader.readLine();
-    CapitalizeSelectionCommand capitalizeSelectionCommand =
-        new CapitalizeSelectionCommand(selection);
-    String result = capitalizeSelectionCommand.execute(textToBeModified);
-    textToBeModified = result;
-    System.out.println(result);
+    try {
+      isTextEmpty();
+      printer.promptForPartOfTextToCapitalize();
+      String selection = inputReader.readLine();
+      CapitalizeSelectionCommand capitalizeSelectionCommand =
+          new CapitalizeSelectionCommand(selection);
+      String result = capitalizeSelectionCommand.execute(textToBeModified);
+      textToBeModified = result;
+      System.out.println(result);
+    } catch (Exception e) {
+      printer.printInvalidInput();
+    }
   }
 
   /**
@@ -204,29 +235,33 @@ public class UserInterface {
    * separated by a space (e.g., 1 2 3 4 5 6 7 8).</p>
    */
   public void runSequenceOfCommands() {
-    isTextEmpty();
-    printer.promptForSequenceOfCommands();
-    String sequence = inputReader.readLine();
-    String[] commands = sequence.split(" ");
-    for (String command : commands) {
-      switch (command) {
-        case "1" -> wrapTextCommand();
-        case "2" -> wrapSelectionTextCommand();
-        case "3" -> wrapLinesCommand();
-        case "4" -> replaceTextCommand();
-        case "5" -> replaceFirstTextCommand();
-        case "6" -> capitalizeTextCommand();
-        case "7" -> capitalizeWordsTextCommand();
-        case "8" -> capitalizeSelectionCommand();
-        default -> printer.invalidCommand(command);
+    try {
+      isTextEmpty();
+      printer.promptForSequenceOfCommands();
+      String sequence = inputReader.readLine();
+      String[] commands = sequence.split(" ");
+      for (String command : commands) {
+        switch (command) {
+          case "1" -> wrapTextCommand();
+          case "2" -> wrapSelectionTextCommand();
+          case "3" -> wrapLinesCommand();
+          case "4" -> replaceTextCommand();
+          case "5" -> replaceFirstTextCommand();
+          case "6" -> capitalizeTextCommand();
+          case "7" -> capitalizeWordsTextCommand();
+          case "8" -> capitalizeSelectionCommand();
+          default -> printer.invalidCommand(command);
+        }
       }
+    } catch (Exception e) {
+      printer.printInvalidInput();
     }
   }
 
   /**
    * <p>Checks if the text is empty.
    * If the text is empty, the user is prompted to enter a text.</p>
-
+   *
    * @return True if the text is empty, false otherwise
    */
   public boolean isTextEmpty() {
@@ -249,33 +284,37 @@ public class UserInterface {
    * The user can exit the application by entering 0.</p>
    */
   public void runApp() {
-    init();
-    printer.printMenu();
-    boolean running = true;
-    while (running) {
-      String userInput = inputReader.readLine();
-      switch (userInput) {
-        case "0" -> {
-          printer.printExitWarning();
-          String exitInput = inputReader.readLine();
-          if (exitInput.equals("y")) {
-            printer.printExitMessage();
-            running = false;
+    try {
+      init();
+      printer.printMenu();
+      boolean running = true;
+      while (running) {
+        String userInput = inputReader.readLine();
+        switch (userInput) {
+          case "0" -> {
+            printer.printExitWarning();
+            String exitInput = inputReader.readLine();
+            if (exitInput.equals("y")) {
+              printer.printExitMessage();
+              running = false;
+            }
           }
+          case "1" -> wrapTextCommand();
+          case "2" -> wrapSelectionTextCommand();
+          case "3" -> wrapLinesCommand();
+          case "4" -> replaceTextCommand();
+          case "5" -> replaceFirstTextCommand();
+          case "6" -> capitalizeTextCommand();
+          case "7" -> capitalizeWordsTextCommand();
+          case "8" -> capitalizeSelectionCommand();
+          case "9" -> runSequenceOfCommands();
+          case "10" -> clearText();
+          default -> printer.printInvalidInput();
         }
-        case "1" -> wrapTextCommand();
-        case "2" -> wrapSelectionTextCommand();
-        case "3" -> wrapLinesCommand();
-        case "4" -> replaceTextCommand();
-        case "5" -> replaceFirstTextCommand();
-        case "6" -> capitalizeTextCommand();
-        case "7" -> capitalizeWordsTextCommand();
-        case "8" -> capitalizeSelectionCommand();
-        case "9" -> runSequenceOfCommands();
-        case "10" -> clearText();
-        default -> printer.printInvalidInput();
       }
+      inputReader.exit();
+    } catch (Exception e) {
+      printer.printInvalidInput();
     }
-    inputReader.exit();
   }
 }
