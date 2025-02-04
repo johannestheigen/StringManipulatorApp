@@ -17,14 +17,15 @@ import util.Printer;
  * </p>
  *
  * @author Johannes Nupen Theigen
- * @version 0.0.3
- * @since 02.02.2025
+ * @version 0.0.4
+ * @since 02.04.2025
  */
 public class UserInterface {
 
   private String textToBeModified;
   private InputReader inputReader;
   private Printer printer;
+  private boolean isInSequence;
 
   /**
    * <p>Initializes the user interface.</p>
@@ -32,6 +33,7 @@ public class UserInterface {
   public void init() {
     inputReader = new InputReader();
     printer = new Printer();
+    isInSequence = false;
   }
 
   /**
@@ -56,11 +58,13 @@ public class UserInterface {
       printer.promptForClosingTag();
       String closing = inputReader.readLine();
       WrapTextCommand wrapTextCommand = new WrapTextCommand(opening, closing);
-      String result = wrapTextCommand.execute(textToBeModified);
-      textToBeModified = result;
-      System.out.println(result);
+      textToBeModified = wrapTextCommand.execute(textToBeModified);
+      if (!isInSequence) {
+        printer.printResult(textToBeModified);
+        pressAnyKeyToContinue();
+      }
     } catch (Exception e) {
-      printer.printInvalidInput();
+      printer.printError(e.getMessage());
     }
   }
 
@@ -83,11 +87,13 @@ public class UserInterface {
       String selection = inputReader.readLine();
       WrapSelectionTextCommand wrapSelectionTextCommand =
           new WrapSelectionTextCommand(opening, closing, selection);
-      String result = wrapSelectionTextCommand.execute(textToBeModified);
-      textToBeModified = result;
-      System.out.println(result);
+      textToBeModified = wrapSelectionTextCommand.execute(textToBeModified);
+      if (!isInSequence) {
+        printer.printResult(textToBeModified);
+        pressAnyKeyToContinue();
+      }
     } catch (Exception e) {
-      printer.printInvalidInput();
+      printer.printError(e.getMessage());
     }
   }
 
@@ -115,9 +121,12 @@ public class UserInterface {
       WrapLinesTextCommand wrapLinesTextCommand = new WrapLinesTextCommand(opening, closing);
       String result = wrapLinesTextCommand.execute(textToBeModified);
       textToBeModified = result;
-      System.out.println(result);
+      if (!isInSequence) {
+        printer.printResult(result);
+        pressAnyKeyToContinue();
+      }
     } catch (Exception e) {
-      printer.printInvalidInput();
+      printer.printError(e.getMessage());
     }
   }
 
@@ -140,9 +149,12 @@ public class UserInterface {
           new ReplaceTextCommand(textToReplace, textToReplaceWith);
       String result = replaceTextCommand.execute(textToBeModified);
       textToBeModified = result;
-      System.out.println(result);
+      if (!isInSequence) {
+        printer.printResult(result);
+        pressAnyKeyToContinue();
+      }
     } catch (Exception e) {
-      printer.printInvalidInput();
+      printer.printError(e.getMessage());
     }
   }
 
@@ -165,9 +177,12 @@ public class UserInterface {
           new ReplaceFirstTextCommand(textToReplace, textToReplaceWith);
       String result = replaceFirstTextCommand.execute(textToBeModified);
       textToBeModified = result;
-      System.out.println(result);
+      if (!isInSequence) {
+        printer.printResult(result);
+        pressAnyKeyToContinue();
+      }
     } catch (Exception e) {
-      printer.printInvalidInput();
+      printer.printError(e.getMessage());
     }
   }
 
@@ -182,7 +197,10 @@ public class UserInterface {
       CapitalizeTextCommand capitalizeTextCommand = new CapitalizeTextCommand();
       String result = capitalizeTextCommand.execute(textToBeModified);
       textToBeModified = result;
-      System.out.println(result);
+      if (!isInSequence) {
+        printer.printResult(result);
+        pressAnyKeyToContinue();
+      }
     } catch (Exception e) {
       printer.printInvalidInput();
     }
@@ -199,9 +217,12 @@ public class UserInterface {
       CapitalizeWordsTextCommand capitalizeWordsTextCommand = new CapitalizeWordsTextCommand();
       String result = capitalizeWordsTextCommand.execute(textToBeModified);
       textToBeModified = result;
-      System.out.println(result);
+      if (!isInSequence) {
+        printer.printResult(result);
+        pressAnyKeyToContinue();
+      }
     } catch (Exception e) {
-      printer.printInvalidInput();
+      printer.printError(e.getMessage());
     }
   }
 
@@ -220,9 +241,12 @@ public class UserInterface {
           new CapitalizeSelectionCommand(selection);
       String result = capitalizeSelectionCommand.execute(textToBeModified);
       textToBeModified = result;
-      System.out.println(result);
+      if (!isInSequence) {
+        printer.printResult(result);
+        pressAnyKeyToContinue();
+      }
     } catch (Exception e) {
-      printer.printInvalidInput();
+      printer.printError(e.getMessage());
     }
   }
 
@@ -237,10 +261,9 @@ public class UserInterface {
   public void runSequenceOfCommands() {
     try {
       isTextEmpty();
+      isInSequence = true;
       printer.promptForSequenceOfCommands();
-      String sequence = inputReader.readLine();
-      String[] commands = sequence.split(" ");
-      for (String command : commands) {
+      for (String command : inputReader.readLine().split(" ")) {
         switch (command) {
           case "1" -> wrapTextCommand();
           case "2" -> wrapSelectionTextCommand();
@@ -253,9 +276,21 @@ public class UserInterface {
           default -> printer.invalidCommand(command);
         }
       }
+      textToBeModified = textToBeModified.strip();
+      System.out.println(textToBeModified);
+      pressAnyKeyToContinue();
     } catch (Exception e) {
-      printer.printInvalidInput();
+      printer.printError(e.getMessage());
     }
+  }
+
+  /**
+   * <p>Prompts the user to press any key to continue using the application.</p>
+   */
+  public void pressAnyKeyToContinue() {
+    printer.promptForAnyKeyToContinue();
+    inputReader.readLine();
+    printer.printMenu();
   }
 
   /**
@@ -273,8 +308,13 @@ public class UserInterface {
     return false;
   }
 
+  /**
+   * <p>Clears the text to be modified.</p>
+   */
   public void clearText() {
     textToBeModified = null;
+    printer.printTextCleared();
+    pressAnyKeyToContinue();
   }
 
   /**
@@ -309,12 +349,16 @@ public class UserInterface {
           case "8" -> capitalizeSelectionCommand();
           case "9" -> runSequenceOfCommands();
           case "10" -> clearText();
-          default -> printer.printInvalidInput();
+          default -> {
+            printer.printInvalidInput();
+            pressAnyKeyToContinue();
+          }
         }
       }
       inputReader.exit();
     } catch (Exception e) {
-      printer.printInvalidInput();
+      printer.printError(e.getMessage());
+      pressAnyKeyToContinue();
     }
   }
 }
