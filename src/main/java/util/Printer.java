@@ -4,8 +4,8 @@ package util;
  * <p>Printer class that prints the menu and prompts for user input.</p>
 
  * @author Johannes Nupen Theigen
- * @version 0.0.1
- * @since 02.01.2025
+ * @version 0.0.2
+ * @since 02.04.2025
  */
 public class Printer {
 
@@ -121,5 +121,23 @@ public class Printer {
    */
   public void invalidCommand(String command) {
     System.out.println("Invalid command: " + command);
+  }
+
+  public void printResult(String result) {
+    System.out.println(result);
+  }
+
+  /**
+   * <p>Prompts the user to press any key to continue using the application.</p>
+   */
+  public void promptForAnyKeyToContinue() {
+    System.out.println("Press any key to continue...");
+  }
+
+  /**
+   * <p>Prints a message when the text is cleared.</p>
+   */
+  public void printTextCleared() {
+    System.out.println("Successfully cleared the text.");
   }
 }
