@@ -50,6 +50,15 @@ public class Printer {
   }
 
   /**
+   * <p>Prints a message if an error occurs.</p>
+
+   * @param message The error message
+   */
+  public void printError(String message) {
+    System.out.println("Error! " + message);
+  }
+
+  /**
    * <p>Prompts the user to enter the text they want to modify.</p>
    */
   public void promptForTextToModify() {
@@ -124,7 +133,7 @@ public class Printer {
   }
 
   public void printResult(String result) {
-    System.out.println(result);
+    System.out.println("Result: " + result);
   }
 
   /**
