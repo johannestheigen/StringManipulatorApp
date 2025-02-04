@@ -1,11 +1,11 @@
-# String Manipulator Application
+# String Manipulator Application v 1.0
 
 Developed by **Johannes Nupen Theigen**
 
 ## Project Description
 
 This project is a mandatory assignment
-in the course IDATG2003 - Programmming 2 at NTNU. The
+in the course IDATG2003 - Programming 2 at NTNU. The
 assignment is about creating a program that can manipulate
 strings in different ways. The program is written in Java
 and developed in IntelliJ IDEA IDE. 
@@ -17,7 +17,7 @@ The source code is packaged in the main folder.
 There are five packages in the main folder:
 
 - **`app`**: Contains the `UserInterface` class and the `Main` class.
-- **`commands`**: Contains all the different command classes.
+- **`commands`**: Contains all the different command classes
 - **`util`**: Contains utility classes for input reading and printing.
 
 ## How to run the project
