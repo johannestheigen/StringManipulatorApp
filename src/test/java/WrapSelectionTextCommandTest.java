@@ -23,16 +23,19 @@ class WrapSelectionTextCommandTest {
     assertEquals("<p>Hello</p> World!", result, "The execution output does not match the expected result, failing the positive test.");
   }
 
-  /*
-   * <p>Negative test that assures that a selection of text is not incorrectly
-   * wrapped with the opening and end strings.</p>
+  /**
+   * <p>Negative test that assures that the execute method throws an
+   * IllegalArgumentException when the selection is null or empty.</p>
    */
   @Test
   void executeNegativeTest() {
-    WrapSelectionTextCommand wrapSelectionTextCommand = new WrapSelectionTextCommand("<p>", "</p>", "World");
-    String text = "Hello World!";
-    String result = wrapSelectionTextCommand.execute(text);
-    String expected = "Hello W<p>orld</p>!";
-    assertNotEquals(expected, result, "The execution output matches the expected result, failing the negative test.");
+    WrapSelectionTextCommand wrapSelectionTextCommand = new WrapSelectionTextCommand("<p>", "</p>", null);
+    assertThrows(IllegalArgumentException.class,
+        () -> wrapSelectionTextCommand.execute("Hello world!"),
+        "Expected IllegalArgumentException for null selection.");
+    WrapSelectionTextCommand wrapSelectionTextCommandEmpty = new WrapSelectionTextCommand("<p>", "</p>", "");
+    assertThrows(IllegalArgumentException.class,
+        () -> wrapSelectionTextCommandEmpty.execute("Hello World!"),
+        "Expected IllegalArgumentException for empty selection.");
   }
 }

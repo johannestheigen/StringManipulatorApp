@@ -20,20 +20,18 @@ class WrapLinesTextCommandTest {
     WrapLinesTextCommand command = new WrapLinesTextCommand("<p>", "</p>");
     String input = "First line\nSecond line";
     String result = command.execute(input);
-
     assertEquals("<p>First line</p> <p>Second line</p>", result);
   }
 
   /**
-   * <p>Negative test that assures that a text is not incorrectly
-   * wrapped with the opening and end strings.</p>
+   * <p>Negative test that checks if the execute method throws an
+   * IllegalArgumentException when the input is null or empty.</p>
    */
   @Test
-  void executeNegativeTest()
-  {
+  void executeNegativeTest() {
     WrapLinesTextCommand command = new WrapLinesTextCommand("<p>", "</p>");
-    String input = "First line\nSecond line";
-    String result = command.execute(input);
-    assertNotEquals("<p>FirstLine</p> <p>SecondLine</p>", result);
+    assertThrows(IllegalArgumentException.class, () -> command.execute(null));
+    String emptyInput = "";
+    assertThrows(IllegalArgumentException.class, () -> command.execute(emptyInput));
   }
 }

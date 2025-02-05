@@ -8,8 +8,8 @@ import java.util.List;
  * sequence of commands on a text.</p>
  *
  * @author Johannes Nupen Theigen
- * @version 0.0.1
- * @since 01.31.2025
+ * @version 0.0.2
+ * @since 02.05.2025
  */
 public class Script {
 
@@ -31,6 +31,12 @@ public class Script {
    * @return The text after the commands have been
    */
   public String execute(String text) {
+    if (text == null) {
+      throw new IllegalArgumentException("Text cannot be null");
+    }
+    if (text.isEmpty()) {
+      throw new IllegalArgumentException("Text cannot be empty");
+    }
     String result = text;
     for (TextCommand command : commands) {
       result = command.execute(result);
@@ -48,5 +54,15 @@ public class Script {
       throw new IllegalArgumentException("Command cannot be null");
     }
     commands.add(command);
+  }
+
+  /**
+   * <p>Retrieves the list of commands in the script.
+   * Used for testing purposes only.</p>
+   *
+   * @return The list of commands
+   */
+  public List<TextCommand> getCommands() {
+    return commands;
   }
 }

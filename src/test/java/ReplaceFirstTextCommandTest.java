@@ -1,9 +1,7 @@
 import commands.ReplaceFirstTextCommand;
-import commands.ReplaceTextCommand;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * <p>Test class for the  commands.ReplaceFirstTextCommand class to ensure
@@ -27,15 +25,15 @@ class ReplaceFirstTextCommandTest {
   }
 
   /**
-   * <p>Negative test that assures that the first occurrence of
-   * the targeted part of a string is not incorrectly replaced by the
-   * replacement string.</p>
+   * <p>Negative test that ensures an IllegalArgumentException is thrown
+   * when the text is null, empty or the target string is not found in the input.</p>
    */
   @Test
   void executeNegativeTest() {
-    ReplaceTextCommand command = new ReplaceTextCommand("old text", "new text");
-    String input = "This is the old text with the old text.";
-    String result = command.execute(input);
-    assertNotEquals("This is the neww text with the old text.", result);
+    ReplaceFirstTextCommand command = new ReplaceFirstTextCommand("old text", "new text");
+    assertThrows(IllegalArgumentException.class, () -> command.execute(null), "Text cannot be null");
+    assertThrows(IllegalArgumentException.class, () -> command.execute(""), "Text cannot be empty");
+    String input = "some random text";
+    assertThrows(IllegalArgumentException.class, () -> command.execute(input), "The target was not found in the text.");
   }
 }

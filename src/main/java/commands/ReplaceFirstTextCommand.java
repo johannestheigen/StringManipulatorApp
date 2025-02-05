@@ -31,6 +31,12 @@ public class ReplaceFirstTextCommand extends ReplaceTextCommand {
    */
   @Override
   public String execute(String text) {
+    if (text == null) {
+      throw new IllegalArgumentException("The text cannot be null.");
+    }
+    if (text.isEmpty()) {
+      throw new IllegalArgumentException("The text cannot be empty.");
+    }
     if (!text.contains(getTarget())) {
       throw new IllegalArgumentException("The target was not found in the text.");
     }

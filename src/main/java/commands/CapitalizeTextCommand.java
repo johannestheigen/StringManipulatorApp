@@ -5,8 +5,8 @@ package commands;
  * which capitalizes the first letter of a text.</p>
 
  * @author Johannes Nupen Theigen
- * @version 0.0.3
- * @since 01.30.2025
+ * @version 0.0.4
+ * @since 02.05.2025
  */
 public class CapitalizeTextCommand implements TextCommand {
 
@@ -17,8 +17,11 @@ public class CapitalizeTextCommand implements TextCommand {
    * @return The text capitalized.
    */
   public String execute(String text) {
-    if (text == null || text.isEmpty()) {
+    if (text == null) {
       throw new IllegalArgumentException("Text cannot be null or empty.");
+    }
+    if (text.isEmpty()) {
+      throw new IllegalArgumentException("Text cannot be empty.");
     }
     return text.replaceFirst(String.valueOf(text.charAt(0)), String.valueOf(text.charAt(0)).toUpperCase());
   }
