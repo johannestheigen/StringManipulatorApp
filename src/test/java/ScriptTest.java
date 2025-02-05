@@ -1,6 +1,7 @@
 import commands.CapitalizeTextCommand;
 import commands.ReplaceTextCommand;
 import commands.Script;
+import commands.TextCommand;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,17 +29,43 @@ class ScriptTest {
   }
 
   /**
-   * <p>Negative test that assures that the script does not execute a
-   * sequence of commands on a text incorrectly.</p>
+   * <p>Negative test that assures that the script throws an IllegalArgumentException
+   * when trying to execute a script on a text that is null or empty.</p>
    */
   @Test
   void executeNegativeTest() {
     Script script = new Script();
     script.addCommand(new CapitalizeTextCommand());
     script.addCommand(new ReplaceTextCommand("World", "Java"));
-    String textToBeModified = "Hello World";
-    String expected = "hello World";
-    String actual = script.execute(textToBeModified);
-    assertNotEquals(expected, actual, "The execution output matches the expected result, failing the negative test.");
+    assertThrows(IllegalArgumentException.class,
+        () -> script.execute(null),
+        "Executing a null text should throw IllegalArgumentException.");
+    assertThrows(IllegalArgumentException.class,
+        () -> script.execute(""),
+        "Executing an empty text should throw IllegalArgumentException.");
+  }
+
+  /**
+   *<p>Positive test that assures that a command is successfully added to the script.</p>
+   */
+  @Test
+  void addCommandPositiveTest() {
+    Script script = new Script();
+    TextCommand command = new ReplaceTextCommand("old", "new");
+    script.addCommand(command);
+    assertEquals(1, script.getCommands().size());
+    assertEquals(command, script.getCommands().getFirst());
+  }
+
+  /**
+   * <p>Negative test that assures that the script throws an IllegalArgumentException
+   * when trying to add a null command.</p>
+   */
+  @Test
+  void addCommandNegativeTest() {
+    Script script = new Script();
+    assertThrows(IllegalArgumentException.class,
+        () -> script.addCommand(null),
+        "Adding a null command should throw IllegalArgumentException.");
   }
 }

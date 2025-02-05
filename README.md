@@ -1,4 +1,4 @@
-# String Manipulator Application v 1.0
+# String Manipulator Application v 1.1
 
 Developed by **Johannes Nupen Theigen**
 

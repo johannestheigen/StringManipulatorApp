@@ -24,15 +24,14 @@ class ReplaceTextCommandTest {
   }
 
   /**
-   * <p>Negative test that assures that the targeted part of a string
-   * is not replaced by an incorrect replacement string.</p>
+   * <p>Negative test that ensures an IllegalArgumentException is thrown
+   * when the target string is not found in the input.</p>
    */
   @Test
   void executeNegativeTest() {
     ReplaceTextCommand command = new ReplaceTextCommand("text to be replaced", "replaced text");
-    String input = "This is a string with text to be replaced.";
-    String result = command.execute(input);
-    assertNotEquals("This is a string with texxt to be replaced.", result);
+    String input = "some random text";
+    assertThrows(IllegalArgumentException.class, () -> command.execute(input));
   }
 
   /**
@@ -47,14 +46,15 @@ class ReplaceTextCommandTest {
   }
 
   /**
-   * <p>Negative test that assures that the target string is not incorrectly
-   * retrieved from the replace text command object.</p>
+   * <p>Negative test that ensures an IllegalArgumentException is thrown
+   * when an empty target string is provided.</p>
    */
   @Test
   void getTargetNegativeTest() {
-    ReplaceTextCommand command = new ReplaceTextCommand("text to be replaced", "replaced text");
-    String target = command.getTarget();
-    assertNotEquals("texxt to be replaced", target);
+    ReplaceTextCommand command = new ReplaceTextCommand("", "text to be replaced");
+    assertThrows(IllegalArgumentException.class, command::getTarget);
+    ReplaceTextCommand command2 = new ReplaceTextCommand(null, "text to be replaced");
+    assertThrows(IllegalArgumentException.class, command2::getTarget);
   }
 
   /**
@@ -69,13 +69,14 @@ class ReplaceTextCommandTest {
   }
 
   /**
-   * <p>Negative test that assures that the replacement string is not incorrectly
-   * retrieved from the replace text command object.</p>
+   * <p>Negative test that ensures an IllegalArgumentException is thrown
+   * when an empty replacement string is provided.</p>
    */
   @Test
   void getReplacementNegativeTest() {
-    ReplaceTextCommand command = new ReplaceTextCommand("text to be replaced", "replaced text");
-    String replacement = command.getReplacement();
-    assertNotEquals("replacedd text", replacement);
+    ReplaceTextCommand command = new ReplaceTextCommand("text to be replaced", null);
+    assertThrows(IllegalArgumentException.class, command::getReplacement);
+    ReplaceTextCommand command2 = new ReplaceTextCommand("text to be replaced", "");
+    assertThrows(IllegalArgumentException.class, command2::getReplacement);
   }
 }

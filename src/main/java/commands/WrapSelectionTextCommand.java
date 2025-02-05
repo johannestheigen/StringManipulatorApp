@@ -6,8 +6,8 @@ package commands;
  * </p>
 
  * @author Johannes Nupen Theigen
- * @version 0.0.3
- * @since 01.31.2025
+ * @version 0.0.4
+ * @since 02.05.2025
  */
 public class WrapSelectionTextCommand extends WrapTextCommand {
 
@@ -33,11 +33,11 @@ public class WrapSelectionTextCommand extends WrapTextCommand {
    */
   @Override
   public String execute(String text) {
-    if (text == null || text.isEmpty()) {
-      throw new IllegalArgumentException("Text cannot be null or empty.");
+    if (selection == null) {
+      throw new IllegalArgumentException("Text cannot be null");
     }
-    if (!text.contains(selection)) {
-      return text;
+    if (selection.isEmpty()) {
+      throw new IllegalArgumentException("Selection cannot be empty");
     }
     return text.replaceFirst(selection, getOpening() + selection + getEnd());
   }

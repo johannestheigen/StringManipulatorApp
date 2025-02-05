@@ -6,8 +6,8 @@ package commands;
  * and wraps each line individually with the specified opening and closing strings.</p>
 
  * @author Johannes Nupen Theigen
- * @version 0.0.2
- * @since 01.29.2025
+ * @version 0.0.3
+ * @since 02.05.2025
  */
 public class WrapLinesTextCommand extends WrapTextCommand {
 
@@ -30,6 +30,12 @@ public class WrapLinesTextCommand extends WrapTextCommand {
    */
   @Override
   public String execute(String text) {
+    if (text == null) {
+      throw new IllegalArgumentException("The text cannot be null.");
+    }
+    if (text.isEmpty()) {
+      throw new IllegalArgumentException("The text cannot be empty.");
+    }
     return getOpening() + text.replace("\n", getEnd() + " " + getOpening()) + getEnd();
   }
 }

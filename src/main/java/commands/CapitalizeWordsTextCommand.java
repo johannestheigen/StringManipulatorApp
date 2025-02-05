@@ -7,8 +7,8 @@ package commands;
  * </p>
  *
  * @author Johannes
- * @version 0.0.2
- * @since 02.01.2025
+ * @version 0.0.3
+ * @since 02.05.2025
  */
 public class CapitalizeWordsTextCommand extends CapitalizeTextCommand {
 
@@ -27,7 +27,10 @@ public class CapitalizeWordsTextCommand extends CapitalizeTextCommand {
    */
   @Override
   public String execute(String text) {
-    if (text == null || text.isEmpty()) {
+    if (text == null) {
+      throw new IllegalArgumentException("Text cannot be null or empty.");
+    }
+    if (text.isEmpty()) {
       throw new IllegalArgumentException("Text cannot be null or empty.");
     }
     for (String word : text.split(" ")) {

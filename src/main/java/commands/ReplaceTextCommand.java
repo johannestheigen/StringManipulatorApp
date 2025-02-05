@@ -5,8 +5,8 @@ package commands;
  * This command replaces a target string with a replacement string.</p>
  *
  * @author Johannes Nupen Theigen
- * @version 0.0.3
- * @since 01.30.2025
+ * @version 0.0.4
+ * @since 02.05.2025
  */
 public class ReplaceTextCommand implements TextCommand {
   private final String target;
@@ -43,6 +43,12 @@ public class ReplaceTextCommand implements TextCommand {
    * @return The targeted part of the string to place.
    */
   public String getTarget() {
+    if (target == null) {
+      throw new IllegalArgumentException("The target string cannot be null.");
+    }
+    if (target.isEmpty()) {
+      throw new IllegalArgumentException("The target string cannot be empty.");
+    }
     return target;
   }
 
@@ -52,6 +58,12 @@ public class ReplaceTextCommand implements TextCommand {
    * @return The string that replaces the target.
    */
   public String getReplacement() {
+    if (replacement == null) {
+      throw new IllegalArgumentException("The replacement string cannot be null.");
+    }
+    if (replacement.isEmpty()) {
+      throw new IllegalArgumentException("The replacement string cannot be empty.");
+    }
     return replacement;
   }
 }

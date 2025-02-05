@@ -30,8 +30,17 @@ public class CapitalizeSelectionCommand extends CapitalizeTextCommand {
    */
   @Override
   public String execute(String text) {
-    if (selection == null || selection.isEmpty()) {
+    if (selection == null) {
       throw new IllegalArgumentException("Selection cannot be null or empty.");
+    }
+    if (selection.isEmpty()) {
+      throw new IllegalArgumentException("Selection cannot be null or empty.");
+    }
+    if (text == null) {
+      throw new IllegalArgumentException("Text cannot be null or empty.");
+    }
+    if (text.isEmpty()) {
+      throw new IllegalArgumentException("Text cannot be null or empty.");
     }
     return text.replace(selection, super.execute(selection));
   }

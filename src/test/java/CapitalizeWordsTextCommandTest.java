@@ -24,14 +24,13 @@ class CapitalizeWordsTextCommandTest {
   }
 
   /**
-   * <p>Negative test that assures that the first letter of each word
-   * in a string is not incorrectly capitalized.</p>
+   * <p>Negative test that checks if the method throws an IllegalArgumentException
+   * when the input is null or empty.</p>
    */
   @Test
   void executeNegativeTest() {
     CapitalizeWordsTextCommand capitalizeWordsTextCommand = new CapitalizeWordsTextCommand();
-    String result = capitalizeWordsTextCommand.execute("hello world");
-    String expected = "hEllo woRld";
-    assertNotEquals(expected, result, "The execution output matches the expected result, failing the negative test.");
+    assertThrows(IllegalArgumentException.class, () -> capitalizeWordsTextCommand.execute(null), "The method does not throw an IllegalArgumentException when the input is null, failing the negative test.");
+    assertThrows(IllegalArgumentException.class, () -> capitalizeWordsTextCommand.execute(""), "The method does not throw an IllegalArgumentException when the input is empty, failing the negative test.");
   }
 }
